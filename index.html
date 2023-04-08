@@ -1,5 +1,58 @@
-<script src="http://unpkg.com/vue@next"></script>
-<DIV id="divPrincipal">
- <h1>{{ mensagemInicial }}</h1>
-</DIV>
-<script src="./meuScript.JS"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://unpkg.com/vue@next"></script>
+    <title>Projeto</title>
+</head>
+
+<body>
+
+    <DIV id="divPrincipal">
+
+         <!-- esse v-model realiza a troca do valor da variável "corMsg" que está no "projeto.js" para o valor que está no html -->
+        <input v-model="corMsg"> Digite uma cor para o texto </input>
+        <h3 v-if="corMsg === 'red'"> Já sei! : VERMELHO</h3>
+        <h3 v-else-if="corMsg === 'green'"> Já sei! : VERDE </h3>
+        <h3 v-else-if="corMsg === 'blue'"> Já sei! : AZUL </h3>
+        <h3 v-else> Esta cor eu não conheço</h3>
+
+        <!-- fazendo a ligação do checkbox aqui no html, com a variável "verMsg" que está no projeto.js -->
+        <input type="checkbox" v-model="verMsg"> Mostrar </input>
+
+       <!-- v-bind faz a troca do conteúdo de msgInicial de acordo com o checkbox "true or false". 
+        true faz trocar o conteúdo com a variável "msgInicial" do arquivo JS ("Bem-vindo ao VUE.JS")
+        false vai pegar a mensagem que já está definida no html ("Sem mensagens!"), 
+        v-bind:style muda a cor do texto de acordo o conteúdo da variável "corMsg" -->
+        <h1 v-bind:style="{color : corMsg}">
+            {{ verMsg ? msgInicial : 'Sem mensagens!' }}
+        </h1>
+
+
+        <ul>
+            <li v-for="cor in cores" :key="cor.ptbr">
+                {{cor.ptbr}}
+            </li>
+        </ul>
+
+        <!-- v-on:click adiciona um contador, toda vez que o usuário clicar no botão o valor acrescenta em 1,
+        esse valor é jogado na variável "contador" do JS que depois é mostrada quantas vezes o usuário clicou no botão -->
+        <button v-on:click="contador += 1">Aumentar 1</button>
+        <p> você clicou {{contador}} vezes</p>
+
+        <!-- executa somente com o click, nesse caso a função vai emitir um alert no navegador -->
+        <button v-on:click="avisoSistema(msgText)">
+            Utilidade deste app
+        </button>
+
+        <botao-inutil v-on:click="avisoSistema()"> </botao-inutil>
+    </DIV>
+
+    <script src="./projeto.js"></script>
+
+</body>
+
+</html>
