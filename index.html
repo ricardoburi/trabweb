@@ -6,53 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://unpkg.com/vue@next"></script>
-    <title>Projeto</title>
+    <title>virus</title>
+    <style type="text/css">
+			body{
+				background-color: rgb(82, 0, 245);
+			}
+			.bolota{
+                text-align: center;
+				display: BLOCK;
+				background-color: #0d00ff;
+				width: 95%;
+				box-shadow: 2px 2px 2px #00c3ff;
+				margin: 0 auto;
+				max-width: 90%;
+				max-height: 90%;
+				min-width: 0;
+				min-height: 0;
+				margin-top: 100px;
+            }
+            .box{
+                text-align: center;
+                background-color: rgb(255, 255, 196);
+
+            }
+            .box2{
+                text-align: center;
+                background-color: red;
+                width: 95%;
+                margin: 10% auto;
+                max-width: 90%;
+				max-height: 90%;
+				min-width: 0;
+				min-height: 0;
+                box-shadow: 2px 2px;
+                display: BLOCK;
+
+            }
+    </style>
+<!-- tava testando umas coisas de responsividade que aprendi na internet kkkk-->
 </head>
 
 <body>
 
-    <DIV id="divPrincipal">
+    <form class ="bolota" id="formPrincipal">
 
-         <!-- esse v-model realiza a troca do valor da variável "corMsg" que está no "projeto.js" para o valor que está no html -->
-        <input v-model="corMsg"> Digite uma cor para o texto </input>
-        <h3 v-if="corMsg === 'red'"> Já sei! : VERMELHO</h3>
-        <h3 v-else-if="corMsg === 'green'"> Já sei! : VERDE </h3>
-        <h3 v-else-if="corMsg === 'blue'"> Já sei! : AZUL </h3>
-        <h3 v-else> Esta cor eu não conheço</h3>
-
-        <!-- fazendo a ligação do checkbox aqui no html, com a variável "verMsg" que está no projeto.js -->
-        <input type="checkbox" v-model="verMsg"> Mostrar </input>
-
-       <!-- v-bind faz a troca do conteúdo de msgInicial de acordo com o checkbox "true or false". 
-        true faz trocar o conteúdo com a variável "msgInicial" do arquivo JS ("Bem-vindo ao VUE.JS")
-        false vai pegar a mensagem que já está definida no html ("Sem mensagens!"), 
-        v-bind:style muda a cor do texto de acordo o conteúdo da variável "corMsg" -->
-        <h1 v-bind:style="{color : corMsg}">
-            {{ verMsg ? msgInicial : 'Sem mensagens!' }}
-        </h1>
-
-
-        <ul>
-            <li v-for="cor in cores" :key="cor.ptbr">
-                {{cor.ptbr}}
-            </li>
-        </ul>
-
-        <!-- v-on:click adiciona um contador, toda vez que o usuário clicar no botão o valor acrescenta em 1,
-        esse valor é jogado na variável "contador" do JS que depois é mostrada quantas vezes o usuário clicou no botão -->
-        <button v-on:click="contador += 1">Aumentar 1</button>
-        <p> você clicou {{contador}} vezes</p>
-
-        <!-- executa somente com o click, nesse caso a função vai emitir um alert no navegador -->
-        <button v-on:click="avisoSistema(msgText)">
-            Utilidade deste app
-        </button>
-
-        <botao-inutil v-on:click="avisoSistema()"> </botao-inutil>
-    </DIV>
+        <span>teste de daltonismo:</span>
+        <br>
+        <textarea class="box" v-model="textoDinamico" placeholder="digite uma frase aqui"></textarea>
+        
+        <p style="white-space: pre-line" v-bind:style="{color:corTexto}">{{ textoDinamico }}</p>
+        
+        
+        <input type="radio" name="cores" v-on:click="corTexto = 'blue'"> camuflado </input>
+        <input type="radio" name="cores" v-on:click="corTexto = 'yellow'"> amarelo </input>
+        <input type="radio" name="cores" v-on:click="corTexto = 'green'"> verde </input>
+    </form>
 
     <script src="./projeto.js"></script>
 
+    <textarea class="box2"v-model="textoDinamico" placeholder="digite o numero do cartao"></textarea>
 </body>
 
 </html>
+
